@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
-r"""Simple transfer learning with Inception v3 or Mobilenet models.
+"""Simple transfer learning with Inception v3 or Mobilenet models.
 
 With support for TensorBoard.
 
@@ -90,6 +90,25 @@ Visualize the summaries with this command:
 tensorboard --logdir /tmp/retrain_logs
 
 """
+
+#"""
+#This file is available at:
+#    https://github.com/tensorflow/hub/blob/master/examples/image_retraining/retrain.py
+#
+#Quote From:
+#    "https://becominghuman.ai/" + \
+#    "transfer-learning-retraining-inception-v3-for-custom-image-classification-2820f653c557"
+#
+#What the script does:
+#It trains a new top layer (bottleneck) that can recognize specific classes of i
+#mages. The top layer receives as input a 2048-dimensional vector for each image. 
+#A softmax layer is then trained on top of this representation. Assuming the 
+#softmax layer contains N labels, this corresponds to learning N + 2048*N 
+#(or 1001*N) model parameters corresponding to the learned biases and weights.
+#...
+#
+#"""
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -1145,19 +1164,19 @@ if __name__ == '__main__':
   parser.add_argument(
       '--image_dir',
       type=str,
-      default='',
+      default='/home/rm/Sandlot-TensorFlow/Inception_wisdal/train_augmented_sets_of_images',          #'',
       help='Path to folders of labeled images.'
   )
   parser.add_argument(
       '--output_graph',
       type=str,
-      default='/tmp/output_graph.pb',
+      default='/home/rm/Sandlot-TensorFlow/Inception_wisdal/tmp/output_graph.pb',
       help='Where to save the trained graph.'
   )
   parser.add_argument(
       '--intermediate_output_graphs_dir',
       type=str,
-      default='/tmp/intermediate_graph/',
+      default='/home/rm/Sandlot-TensorFlow/Inception_wisdal/tmp/intermediate_graph/',
       help='Where to save the intermediate graphs.'
   )
   parser.add_argument(
@@ -1172,13 +1191,13 @@ if __name__ == '__main__':
   parser.add_argument(
       '--output_labels',
       type=str,
-      default='/tmp/output_labels.txt',
+      default='/home/rm/Sandlot-TensorFlow/Inception_wisdal/tmp/output_labels.txt',
       help='Where to save the trained graph\'s labels.'
   )
   parser.add_argument(
       '--summaries_dir',
       type=str,
-      default='/tmp/retrain_logs',
+      default='/home/rm/Sandlot-TensorFlow/Inception_wisdal/tmp/retrain_logs',
       help='Where to save summary logs for TensorBoard.'
   )
   parser.add_argument(
@@ -1252,7 +1271,7 @@ if __name__ == '__main__':
   parser.add_argument(
       '--model_dir',
       type=str,
-      default='/tmp/imagenet',
+      default='/home/rm/Sandlot-TensorFlow/Inception_wisdal/tmp/imagenet',
       help="""\
       Path to classify_image_graph_def.pb,
       imagenet_synset_to_human_label_map.txt, and
@@ -1262,7 +1281,7 @@ if __name__ == '__main__':
   parser.add_argument(
       '--bottleneck_dir',
       type=str,
-      default='/tmp/bottleneck',
+      default='/home/rm/Sandlot-TensorFlow/Inception_wisdal/tmp/bottleneck',
       help='Path to cache bottleneck layer values as files.'
   )
   parser.add_argument(
