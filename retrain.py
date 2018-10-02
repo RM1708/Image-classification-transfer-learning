@@ -109,6 +109,23 @@ tensorboard --logdir /tmp/retrain_logs
 #
 #"""
 
+'''
+#For Bottleneck see:
+#https://www.tensorflow.org/hub/tutorials/image_retraining#bottlenecks
+    'Bottleneck' is an informal term we often use for the layer just before the 
+    final output layer that actually does the classification. 
+    (TensorFlow Hub calls this an "image feature vector".) 
+    This penultimate layer has been trained to output a set of 
+    values that's good enough for the classifier to use to 
+    distinguish between all the classes it's been asked to recognize. 
+    That means it has to be a meaningful and compact summary of 
+    the images, since it has to contain enough information for 
+    the classifier to make a good choice in a very small set of values. 
+    The reason our final layer retraining can work on new classes 
+    is that it turns out the kind of information needed to 
+    distinguish between all the 1,000 classes in ImageNet is 
+    *** often *** also useful to distinguish between new kinds of objects.
+'''
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
